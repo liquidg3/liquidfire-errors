@@ -1,5 +1,6 @@
 # liquidfire:Errors
-Setup basic error reporting through the use of adapters. Configure in your `modules.json`.
+Setup basic error reporting through the use of adapters. It makes getting updates about errors, warnings, and longs easy.
+To get started, you can use this `modules.json` as a starting point..
 
 ```json
 {
@@ -9,7 +10,7 @@ Setup basic error reporting through the use of adapters. Configure in your `modu
                 "path": "adapters/Email",
                 "options": {
                     "on": ["warn", "err", "log"],
-                    "frequency": "hourly",
+                    "frequency": "0 * * * *",
                     "transport": {
                         "service": "gmail",
                         "auth": {
@@ -18,7 +19,9 @@ Setup basic error reporting through the use of adapters. Configure in your `modu
                         }
                     },
                     "mailOptions": {
-                        "from": "Me <me@taylorrome.ro>"
+                        "to": "Me <me@taylorrome.ro>",
+                        "from": "no-replay <me@taylorrome.ro>",
+                        "subject": "Bug Report"
                     }
                 }
             },
@@ -41,4 +44,4 @@ Setup basic error reporting through the use of adapters. Configure in your `modu
 ## Available Adapters
 We only have 2 so far, one that wraps [nodemailer](https://www.npmjs.com/package/nodemailer) and one that wraps [Twilio](http://twilio.github.io/twilio-node/).
 
-To configure `adapters/Email` take a look at the docs for 'nodemailer'.
+To configure `adapters/Email` take a look at the docs for 'nodemailer'. 
