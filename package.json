@@ -1,11 +1,12 @@
 {
     "name":         "liquidfire:Errors",
-    "version":      "0.0.1",
+    "version":      "0.0.2",
     "description":  "Notify yourself when things happen",
     "dependencies": {
         "cron": ">=1.0.x",
         "nodemailer": ">=1.4.x",
         "nodemailer-wellknown": ">=0.1.x",
-        "twilio": ">=2.2.x"
+        "twilio": ">=2.2.x",
+        "slack-node": "0.1.7"
     }
 }

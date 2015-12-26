@@ -34,6 +34,30 @@ To get started, you can use this `modules.json` as a starting point..
                     "authToken": "token",
                     "from": "233-234-2343"
                 }
+            },
+            
+            {
+                "path": "adapters/Slack",
+                "description": "All options pass through to slack-node",
+                "options": {
+                    "on": ["warn", "err", "log"],
+                    "url": "https://hooks.slack.com/services/****/***/****",
+                    "icon_emoji": ":ghost:",
+                    "username": "altairbot",
+                    "channel": "my-channel",
+                    "log": {
+                        "icon_emoji": ":grey_exclamation:",
+                        "channel": "#logs"
+                    },
+                    "warn": {
+                        "icon_emoji": ":warning:",
+                        "channel": "#warnings"
+                    },
+                    "err": {
+                        "icon_emoji": ":fire:",
+                        "channel": "#errors"
+                    }
+                }
             }
         
         ]
