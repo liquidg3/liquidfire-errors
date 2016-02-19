@@ -3,10 +3,10 @@
     "version":      "0.0.2",
     "description":  "Notify yourself when things happen",
     "dependencies": {
-        "cron": ">=1.0.x",
-        "nodemailer": ">=1.4.x",
-        "nodemailer-wellknown": ">=0.1.x",
-        "twilio": ">=2.2.x",
+        "cron": "~1.0.0",
+        "nodemailer": "~1.4.0",
+        "nodemailer-wellknown": "~0.1.0",
+        "twilio": "~2.2.0",
         "slack-node": "0.1.7"
     }
 }
