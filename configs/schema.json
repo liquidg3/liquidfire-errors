@@ -1,0 +1,11 @@
+{
+    "properties": {
+        "prefix": {
+            "type": "string",
+            "options": {
+                "label": "Prefix",
+                "description": "Prefixed to all logs"
+            }
+        }
+    }
+}

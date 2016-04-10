@@ -1,21 +1,19 @@
 define(['altair/facades/declare',
-        'altair/Lifecycle',
-        'altair/mixins/_AssertMixin',
+        './_Base',
         'altair/plugins/node!cron',
         'altair/plugins/node!nodemailer',
         'altair/facades/mixin',
         'altair/facades/__',
         'lodash'
 ], function (declare,
-             Lifecycle,
-             _AssertMixin,
+             Base,
              cron,
              nodemailer,
              mixin,
              __,
              _) {
 
-    return declare([Lifecycle, _AssertMixin], {
+    return declare([Base], {
 
         _warnQueue: null,
         _logQueue:  null,
@@ -116,19 +114,7 @@ define(['altair/facades/declare',
 
             }
 
-
-
-        },
-
-        stringify: function (args) {
-
-            var date    = args.shift(),
-                parent  = args.shift();
-
-            return date.toString() + ' ' + (parent.name || parent.toString()) + ': ' +  __(args);
-
         }
-
 
     });
 

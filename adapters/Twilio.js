@@ -1,15 +1,15 @@
-define(['altair/facades/declare',
-        'altair/Lifecycle',
-        'altair/mixins/_AssertMixin',
-        'altair/plugins/node!twilio',
-        'altair/facades/__'
+define([
+    'altair/facades/declare',
+    './_Base',
+    'altair/mixins/_AssertMixin',
+    'altair/plugins/node!twilio',
+    'altair/facades/__'
 ], function (declare,
-             Lifecycle,
-             _AssertMixin,
+             Base,
              twilio,
              __) {
 
-    return declare([Lifecycle, _AssertMixin], {
+    return declare([Base], {
 
         twilio: null,
         startup: function (options) {
@@ -36,10 +36,11 @@ define(['altair/facades/declare',
 
         sendMessage: function (args) {
 
-            var data    = Array.prototype.slice.call(args),
-                date    = data.shift(),
-                parent  = data.shift(),
-                body    = (parent.name || parent.toString()) + ': ';
+            var data = Array.prototype.slice.call(args),
+                debug = data.shift(),
+                date = data.shift(),
+                parent = data.shift(),
+                body = (parent.name || parent.toString()) + ': ';
 
 
             data = _.map(data, function (d) {

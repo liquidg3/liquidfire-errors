@@ -1,19 +1,17 @@
 define(['altair/facades/declare',
-        'altair/Lifecycle',
-        'altair/mixins/_AssertMixin',
+        './_Base',
         'altair/plugins/node!slack-node',
         'altair/facades/__',
         'altair/facades/mixin',
         'lodash'
 ], function (declare,
-             Lifecycle,
-             _AssertMixin,
+             Base,
              Slack,
              __,
              mixin,
              _) {
 
-    return declare([Lifecycle, _AssertMixin], {
+    return declare([Base], {
 
         slack: null,
 
@@ -63,19 +61,8 @@ define(['altair/facades/declare',
 
             });
 
-        },
-
-        stringify: function (args) {
-
-            var date    = args.shift(),
-                parent  = args.shift();
-
-
-            return (parent.name || parent.toString()) + ': ' +  _.map(args, function (arg) {
-                    return arg.stack || arg.message || arg;
-                }).join(' ');
-
         }
+
 
 
     });

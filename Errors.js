@@ -9,11 +9,16 @@
  *
  */
 
-define(['altair/facades/declare',
-        'altair/modules/adapters/mixins/_HasAdaptersMixin',
-        'lodash'
+define([
+    'altair/facades/declare',
+    'altair/modules/adapters/mixins/_HasAdaptersMixin',
+    'apollo/_HasSchemaMixin',
+    'altair/plugins/node!debug',
+    'lodash'
 ], function (declare,
              _HasAdaptersMixin,
+             _HasSchemaMixin,
+             debug,
              _) {
 
     function ucfirst(str) {
@@ -39,22 +44,39 @@ define(['altair/facades/declare',
             this.on('Altair::did-err', this.hitch('didLog'))
             this.on('Altair::did-log', this.hitch('didLog'))
 
-            return this.inherited(arguments);
+            return this.inherited(arguments).then(function () {
+
+                //debug prefix (optional)
+                if (options.prefix) {
+
+                    var oldFormat = debug.formatArgs;
+
+                    debug.formatArgs = function () {
+                        var args = oldFormat.apply(this, arguments);
+                        args[0] = options.prefix + args[0];
+                        return args;
+                    };
+                }
+
+                return this;
+
+            }.bind(this));
 
         },
 
-
         didLog: function (e) {
 
-            var args        = e.get('arguments'),
-                parent      = e.get('parent'),
-                date        = e.get('date'),
-                level       = e.get('level');
+            var args = e.get('arguments'),
+                parent = e.get('parent'),
+                date = e.get('date'),
+                level = e.get('level'),
+                debug = e.get('debug');
 
 
             args = _.cloneDeep(args);
             args.unshift(parent);
             args.unshift(date);
+            args.unshift(debug);
 
             //loop through adapters
             _.each(this.adapters(), function (adapter) {
