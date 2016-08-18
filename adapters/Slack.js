@@ -1,9 +1,9 @@
 define(['altair/facades/declare',
-        './_Base',
-        'altair/plugins/node!slack-node',
-        'altair/facades/__',
-        'altair/facades/mixin',
-        'lodash'
+    './_Base',
+    'altair/plugins/node!slack-node',
+    'altair/facades/__',
+    'altair/facades/mixin',
+    'lodash'
 ], function (declare,
              Base,
              Slack,
@@ -39,8 +39,8 @@ define(['altair/facades/declare',
 
         sendMessage: function (type, args) {
 
-            var item        = this.stringify(Array.prototype.slice.call(args)),
-                options     = _.clone(this.options),
+            var item = this.stringify(Array.prototype.slice.call(args)),
+                options = _.clone(this.options),
                 typeOptions = options[type] || {};
 
             options = mixin(options, typeOptions);
@@ -55,14 +55,13 @@ define(['altair/facades/declare',
 
             this.slack.webhook(options, function (err, response) {
 
-                 if (err) {
-                     console.err(err);
-                 }
+                if (err) {
+                    console.err(err);
+                }
 
             });
 
         }
-
 
 
     });

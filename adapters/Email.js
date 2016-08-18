@@ -1,10 +1,10 @@
 define(['altair/facades/declare',
-        './_Base',
-        'altair/plugins/node!cron',
-        'altair/plugins/node!nodemailer',
-        'altair/facades/mixin',
-        'altair/facades/__',
-        'lodash'
+    './_Base',
+    'altair/plugins/node!cron',
+    'altair/plugins/node!nodemailer',
+    'altair/facades/mixin',
+    'altair/facades/__',
+    'lodash'
 ], function (declare,
              Base,
              cron,
@@ -16,16 +16,16 @@ define(['altair/facades/declare',
     return declare([Base], {
 
         _warnQueue: null,
-        _logQueue:  null,
-        _errQueue:  null,
-        _cron:      null,
+        _logQueue: null,
+        _errQueue: null,
+        _cron: null,
         _transport: null,
         startup: function (options) {
 
             var _options = options || this.options || {};
 
-            this._logQueue  = [];
-            this._errQueue  = [];
+            this._logQueue = [];
+            this._errQueue = [];
             this._warnQueue = [];
 
             if (_options.frequency) {
@@ -91,7 +91,7 @@ define(['altair/facades/declare',
             }
 
 
-            if ( body && this._transport ) {
+            if (body && this._transport) {
 
                 var options = mixin(this.options.mailOptions, {
                     html: body
@@ -104,8 +104,8 @@ define(['altair/facades/declare',
 
                     } else {
 
-                        this._logQueue  = [];
-                        this._errQueue  = [];
+                        this._logQueue = [];
+                        this._errQueue = [];
                         this._warnQueue = [];
 
                     }
